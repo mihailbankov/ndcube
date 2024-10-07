@@ -16,12 +16,37 @@ if on_rtd:
 # -- Project information
 project = 'ndcube'
 author = 'The SunPy Community'
+<<<<<<<
 copyright = f'{datetime.now().year}, {author}'
+=======
+
+import datetime
+
+from packaging.version import Version
+
+# -- Project information -----------------------------------------------------
+>>>>>>>
 
 # The full version, including alpha/beta/rc tags
 from ndcube import __version__  # NOQA
 
+<<<<<<<
 release = __version__
+=======
+_version = Version(__version__)
+version = release = str(_version)
+# Avoid "post" appearing in version string in rendered docs
+if _version.is_postrelease:
+    version = release = _version.base_version
+# Avoid long githashes in rendered Sphinx docs
+elif _version.is_devrelease:
+    version = release = f"{_version.base_version}.dev{_version.dev}"
+is_development = _version.is_devrelease
+is_release = not(_version.is_prerelease or _version.is_devrelease)
+
+project = "ndcube"
+author = "The SunPy Community"
+>>>>>>>
 ndcube_version = Version(__version__)
 is_release = not(ndcube_version.is_prerelease or ndcube_version.is_devrelease)
 
@@ -100,7 +125,14 @@ graphviz_dot_args = [
     '-Efontname=Helvetica Neue, Helvetica, Arial, sans-serif',
     '-Gfontsize=10',
     '-Gfontname=Helvetica Neue, Helvetica, Arial, sans-serif'
+<<<<<<<
 ]
+=======
+master_doc = "index"
+
+# Treat everything in single ` as a Python reference.
+default_role = "py:obj"
+>>>>>>>
 
 
 # -- Sphinx Gallery
